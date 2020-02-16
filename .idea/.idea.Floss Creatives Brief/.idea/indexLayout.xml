@@ -3,7 +3,6 @@
   <component name="ContentModelUserStore">
     <attachedFolders />
     <explicitIncludes>
-      <Path>Assets</Path>
       <Path>Library/PackageCache/com.unity.collab-proxy@1.2.16</Path>
       <Path>Library/PackageCache/com.unity.ext.nunit@1.0.0</Path>
       <Path>Library/PackageCache/com.unity.ide.rider@1.1.4</Path>
@@ -11,15 +10,21 @@
       <Path>Library/PackageCache/com.unity.test-framework@1.1.11</Path>
       <Path>Library/PackageCache/com.unity.textmeshpro@2.0.1</Path>
       <Path>Library/PackageCache/com.unity.timeline@1.2.10</Path>
+      <Path>Library/PackageCache/com.unity.xr.arcore@2.1.2</Path>
+      <Path>Library/PackageCache/com.unity.xr.arfoundation@2.1.4</Path>
+      <Path>Library/PackageCache/com.unity.xr.arkit@2.1.2</Path>
+      <Path>Library/PackageCache/com.unity.xr.arsubsystems@2.1.1</Path>
       <Path>Packages</Path>
       <Path>ProjectSettings</Path>
     </explicitIncludes>
     <explicitExcludes>
       <Path>.git</Path>
       <Path>.idea</Path>
+      <Path>Build</Path>
       <Path>Library</Path>
       <Path>Logs</Path>
       <Path>Temp</Path>
+      <Path>obj</Path>
     </explicitExcludes>
   </component>
 </project>
