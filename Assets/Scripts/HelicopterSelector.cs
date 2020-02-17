@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class HelicopterSelector : MonoBehaviour
@@ -7,6 +8,7 @@ public class HelicopterSelector : MonoBehaviour
     public string[] helicoptersName;
     public Text currentHelicopterName;
     public int currentHelicopter;
+    public Action<int> onSelect;
 
     private Quaternion _startRotation;
     private Vector3 _startTouchPosition;
@@ -73,5 +75,10 @@ public class HelicopterSelector : MonoBehaviour
                 _targetAngle = 240f;
                 break;
         }
+    }
+
+    public void Select()
+    {
+        onSelect?.Invoke(currentHelicopter);
     }
 }
