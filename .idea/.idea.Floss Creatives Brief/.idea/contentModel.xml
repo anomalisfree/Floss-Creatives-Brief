@@ -4,9 +4,9 @@
     <e p="C:\Unity Projects\Floss Creatives Brief" t="IncludeRecursive">
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
-        <e p="HelicopterSelector.cs" t="Include" />
         <e p="Scripts" t="Include">
-          <e p="PlaceOnPlane.cs" t="Include" />
+          <e p="HelicopterSelector.cs" t="Include" />
+          <e p="StartPositionManager.cs" t="Include" />
         </e>
       </e>
       <e p="Floss Creatives Brief.sln" t="IncludeFlat" />
