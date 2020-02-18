@@ -1148,7 +1148,7 @@ PrefabInstance:
     - target: {fileID: 4713503629035112728, guid: e60f2bcb9bf365c4daba6ed0bf57c958,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e60f2bcb9bf365c4daba6ed0bf57c958, type: 3}
@@ -4850,6 +4850,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Chinook
+      objectReference: {fileID: 0}
+    - target: {fileID: 8834479251930307148, guid: ebec78b8dff6d094491bdd71f5eff21e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9098246483479744260, guid: ebec78b8dff6d094491bdd71f5eff21e,
         type: 3}

@@ -8,7 +8,14 @@ public class StartPositionManager : MonoBehaviour
     public GameObject[] helicopterPrefabs;
     public HelicopterSelector helicopterSelector;
     public float rotationSpeed = 500;
+    public GameObject canvasPoseMode;
     public GameObject canvasPose;
+
+    public GameObject canvasControl;
+    public FixedJoystick leftJoystick;
+    public FixedJoystick rightJoystick;
+    public Material planeMaterial;
+    public Material planeLineMaterial;
 
     private GameObject _currentHelicopter;
     private ARRaycastManager _sessionOrigin;
@@ -23,6 +30,8 @@ public class StartPositionManager : MonoBehaviour
 
     private float _startTouchDestination;
     private Vector3 _startScale;
+    private float _currentHelicopterScale = 1;
+    private Quaternion _currentHelicopterRotation = Quaternion.identity;
 
     private void Awake()
     {
@@ -60,7 +69,7 @@ public class StartPositionManager : MonoBehaviour
                 if (_isInRotation)
                 {
                     _startTouchPosition = touch.position;
-                    _startRotation = _currentHelicopter.transform.localRotation;
+                    _startRotation = _currentHelicopter.GetComponent<HelicopterControl>().pivotRotation.localRotation;
                 }
                 else
                 {
@@ -71,8 +80,8 @@ public class StartPositionManager : MonoBehaviour
             {
                 if (_isInRotation)
                 {
-                    _currentHelicopter.transform.localRotation = _startRotation;
-                    _currentHelicopter.transform.Rotate(Vector3.up,
+                    _currentHelicopter.GetComponent<HelicopterControl>().pivotRotation.localRotation = _startRotation;
+                    _currentHelicopter.GetComponent<HelicopterControl>().pivotRotation.Rotate(Vector3.up,
                         (_startTouchPosition.x - touch.position.x) * rotationSpeed / Screen.width);
                 }
                 else
@@ -95,7 +104,7 @@ public class StartPositionManager : MonoBehaviour
             {
                 _currentHelicopter.transform.localScale = _startScale + Vector3.one *
                     (Vector2.Distance(touchOne.position, touchTwo.position) -
-                     _startTouchDestination)  / Screen.width;
+                     _startTouchDestination) / Screen.width;
             }
         }
     }
@@ -114,9 +123,10 @@ public class StartPositionManager : MonoBehaviour
         if (_currentHelicopter == null)
         {
             _currentHelicopter =
-                Instantiate(helicopterPrefabs[_currentHelicopterNum], pose.position, pose.rotation);
-            _currentHelicopter.transform.position = pose.position;
-            _currentHelicopter.transform.rotation = pose.rotation;
+                Instantiate(helicopterPrefabs[_currentHelicopterNum], pose.position, Quaternion.identity);
+            _currentHelicopter.transform.localScale = Vector3.one * _currentHelicopterScale;
+            _currentHelicopter.GetComponent<HelicopterControl>().pivotRotation.localRotation =
+                _currentHelicopterRotation;
 
             canvasPose.SetActive(true);
             _isInRotation = true;
@@ -124,7 +134,7 @@ public class StartPositionManager : MonoBehaviour
         else
         {
             _currentHelicopter.transform.position = pose.position;
-            _currentHelicopter.transform.rotation = pose.rotation;
+            _currentHelicopter.transform.rotation = Quaternion.identity;
         }
     }
 
@@ -133,15 +143,55 @@ public class StartPositionManager : MonoBehaviour
         _currentHelicopterNum = currentHelicopterNum;
         _currentMode = 1;
         helicopterSelector.transform.parent.parent.gameObject.SetActive(false);
-
-        // _currentHelicopter =
-        //     Instantiate(helicopterPrefabs[_currentHelicopterNum], new Vector3(0, 0, 5), Quaternion.identity);
-        // _isInRotation = true;
+        canvasPoseMode.SetActive(true);
     }
 
     public void SetMovement()
     {
         _isInRotation = false;
         canvasPose.SetActive(false);
+        canvasPoseMode.SetActive(true);
+        canvasControl.SetActive(false);
+
+        DestroyHelicopter();
+    }
+
+    public void SetControlMode()
+    {
+        _currentMode = 2;
+        _isInRotation = false;
+        canvasPose.SetActive(false);
+        canvasPoseMode.SetActive(false);
+        canvasControl.SetActive(true);
+        planeMaterial.color = new Color(1, 1, 1, 0);
+        planeLineMaterial.color = new Color(0.5f, 0.5f, 0.5f, 0);
+
+        _currentHelicopter.GetComponent<HelicopterControl>().leftJoystick = leftJoystick;
+        _currentHelicopter.GetComponent<HelicopterControl>().rightJoystick = rightJoystick;
+    }
+
+    public void SetSelectMode()
+    {
+        _currentMode = 0;
+        _isInRotation = false;
+        canvasPose.SetActive(false);
+        canvasPoseMode.SetActive(false);
+        canvasControl.SetActive(false);
+        helicopterSelector.transform.parent.parent.gameObject.SetActive(true);
+        planeMaterial.color = new Color(1, 1, 1, 0.2f);
+        planeLineMaterial.color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
+
+        DestroyHelicopter();
+    }
+
+    private void DestroyHelicopter()
+    {
+        if (_currentHelicopter != null)
+        {
+            _currentHelicopterScale = _currentHelicopter.transform.localScale.x;
+            _currentHelicopterRotation =
+                _currentHelicopter.GetComponent<HelicopterControl>().pivotRotation.localRotation;
+            Destroy(_currentHelicopter);
+        }
     }
 }
