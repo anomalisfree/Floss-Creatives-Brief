@@ -6,7 +6,52 @@ ModelImporter:
   - first:
       74: 1827226128182048838
     second: Take 001
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material #1236
+    second: {fileID: 2100000, guid: 5c664db3106bf754bbc699a147ac9977, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material #1429
+    second: {fileID: 2100000, guid: c15625a020dce2f4197439953ed6d2e9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: all body part
+    second: {fileID: 2100000, guid: c55e26e483a3715409d8a8d455c841e4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: glass
+    second: {fileID: 2100000, guid: 8308ed384b3a3fa47b9cd1dc1f2ba6ae, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: metal low ref
+    second: {fileID: 2100000, guid: 1fc65e83de384b44cae7a9ce3e1fdb99, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: metal1
+    second: {fileID: 2100000, guid: 2982915df20dc8b4baa266463ed70c35, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mirror
+    second: {fileID: 2100000, guid: 67902a1e219cb4343a50a66be1b52a09, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: plastic
+    second: {fileID: 2100000, guid: 4cbad1f7468df0d4bb238a13b3a8629c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: shiny metal
+    second: {fileID: 2100000, guid: d92ed767957b95d47afcd925e17001e7, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0

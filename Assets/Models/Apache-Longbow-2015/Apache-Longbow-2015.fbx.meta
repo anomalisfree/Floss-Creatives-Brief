@@ -3,7 +3,77 @@ guid: fc8f5c7894b6ad14fb4070592262954c
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ap_cloth
+    second: {fileID: 2100000, guid: 7b72957160049b3489e9c23796c7278c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ap_cloth.1
+    second: {fileID: 2100000, guid: 3d921f3cbd3940747afce42f68446a22, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ap_cockpit
+    second: {fileID: 2100000, guid: afd2c8b8f4d4b6e448a1bf9e86c6f7ea, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ap_flares
+    second: {fileID: 2100000, guid: 31af5ea92c85e7c4a8eddebe17d541a2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ap_glass
+    second: {fileID: 2100000, guid: 3b6fea0541af1be4ca9bc753555d0c12, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ap_hellfire
+    second: {fileID: 2100000, guid: 771a2ef9d1c1bf549ab2ef3009f6a7a8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ap_hull
+    second: {fileID: 2100000, guid: 1aa7bd1a5474c9543aabf829b58fb908, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ap_hydras
+    second: {fileID: 2100000, guid: a58eda352df3f0e4b88175661dccfebf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ap_lcds
+    second: {fileID: 2100000, guid: 621314e76dc0a0d4ebf983f9242781f6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ap_matte
+    second: {fileID: 2100000, guid: c71002e791e92e94085f3175d0af9788, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ap_metallic
+    second: {fileID: 2100000, guid: c61797f005ebeaa4ab64fe158a4e89d7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ap_nose
+    second: {fileID: 2100000, guid: 55bd7627e0049c74fbc61204e81454fb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ap_reflective
+    second: {fileID: 2100000, guid: 6082187a54eda9244bd4bc372371997a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ap_tire
+    second: {fileID: 2100000, guid: b01a81d678df548408b8def9ea6f9943, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
