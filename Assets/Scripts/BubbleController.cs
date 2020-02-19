@@ -13,6 +13,11 @@ public class BubbleController : MonoBehaviour
     private void Update()
     {
         if (Camera.main != null) transform.LookAt(Camera.main.transform);
+        
+        if (PlayerPrefs.HasKey("canShowBubbles") && PlayerPrefs.GetInt("canShowBubbles") == 0)
+        {
+            _animator.SetBool(Show, false);
+        }
     }
 
     private void OnCollisionEnter(Collision other)
@@ -21,8 +26,6 @@ public class BubbleController : MonoBehaviour
         {
             _animator.SetBool(Show, true);
         }
-        
-        Debug.Log("OnCollisionEnter " + other.transform.tag);
     }
 
     private void OnCollisionExit(Collision other)

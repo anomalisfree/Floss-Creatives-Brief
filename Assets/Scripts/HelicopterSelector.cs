@@ -19,7 +19,7 @@ public class HelicopterSelector : MonoBehaviour
 
     private const float PivotPoseDelta = 5.5f;
 
-    private bool _isAR;
+    private bool _isAR = true;
 
     private void Start()
     {

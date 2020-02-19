@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 
@@ -16,6 +17,9 @@ public class StartPositionManager : MonoBehaviour
     public FixedJoystick rightJoystick;
     public Material planeMaterial;
     public Material planeLineMaterial;
+
+    public GameObject movePhoneInfoIcon;
+    public GameObject tapOnPlaneInfoIcon;
 
     private GameObject _currentHelicopter;
     private ARRaycastManager _sessionOrigin;
@@ -35,6 +39,8 @@ public class StartPositionManager : MonoBehaviour
 
     private void Awake()
     {
+        PlayerPrefs.SetInt("canShowBubbles", 0);
+        
         _sessionOrigin = GetComponent<ARRaycastManager>();
         _hits = new List<ARRaycastHit>();
 
@@ -43,7 +49,7 @@ public class StartPositionManager : MonoBehaviour
 
     private void Update()
     {
-        switch (_currentMode)
+       switch (_currentMode)
         {
             case 0:
 
@@ -59,6 +65,9 @@ public class StartPositionManager : MonoBehaviour
 
     private void InPositionMode()
     {
+        movePhoneInfoIcon.SetActive(FindObjectsOfType<ARPlane>().Length == 0 && !_isInRotation);
+        tapOnPlaneInfoIcon.SetActive(FindObjectsOfType<ARPlane>().Length > 0 && !_isInRotation);
+        
         if (Input.touchCount == 1)
         {
             var touch = Input.GetTouch(0);
@@ -140,6 +149,8 @@ public class StartPositionManager : MonoBehaviour
 
     private void SetPositionMode(int currentHelicopterNum, bool isAR)
     {
+        PlayerPrefs.SetInt("canShowBubbles", 1);
+        
         if (isAR)
         {
             _currentHelicopterNum = currentHelicopterNum;
@@ -165,6 +176,8 @@ public class StartPositionManager : MonoBehaviour
 
     public void SetControlMode()
     {
+        PlayerPrefs.SetInt("canShowBubbles", 0);
+        
         _currentMode = 2;
         _isInRotation = false;
         canvasPose.SetActive(false);
@@ -179,6 +192,8 @@ public class StartPositionManager : MonoBehaviour
 
     public void SetSelectMode()
     {
+        PlayerPrefs.SetInt("canShowBubbles", 0);
+        
         _currentMode = 0;
         _isInRotation = false;
         canvasPose.SetActive(false);

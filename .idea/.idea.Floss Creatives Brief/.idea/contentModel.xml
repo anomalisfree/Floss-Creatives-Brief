@@ -36,8 +36,10 @@
           </e>
         </e>
         <e p="Scripts" t="Include">
+          <e p="BubbleController.cs" t="Include" />
           <e p="HelicopterControl.cs" t="Include" />
           <e p="HelicopterSelector.cs" t="Include" />
+          <e p="HideInTime.cs" t="Include" />
           <e p="StartPositionManager.cs" t="Include" />
         </e>
         <e p="TextMesh Pro" t="Include">
