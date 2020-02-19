@@ -138,12 +138,19 @@ public class StartPositionManager : MonoBehaviour
         }
     }
 
-    private void SetPositionMode(int currentHelicopterNum)
+    private void SetPositionMode(int currentHelicopterNum, bool isAR)
     {
-        _currentHelicopterNum = currentHelicopterNum;
-        _currentMode = 1;
-        helicopterSelector.transform.parent.parent.gameObject.SetActive(false);
-        canvasPoseMode.SetActive(true);
+        if (isAR)
+        {
+            _currentHelicopterNum = currentHelicopterNum;
+            _currentMode = 1;
+            helicopterSelector.transform.parent.parent.gameObject.SetActive(false);
+            canvasPoseMode.SetActive(true);
+        }
+        else
+        {
+            
+        }
     }
 
     public void SetMovement()

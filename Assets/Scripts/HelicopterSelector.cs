@@ -8,7 +8,7 @@ public class HelicopterSelector : MonoBehaviour
     public string[] helicoptersName;
     public Text currentHelicopterName;
     public int currentHelicopter;
-    public Action<int> onSelect;
+    public Action<int, bool> onSelect;
     public Transform pivot;
 
     private Quaternion _startRotation;
@@ -18,6 +18,8 @@ public class HelicopterSelector : MonoBehaviour
     private float _aspectRatio;
 
     private const float PivotPoseDelta = 5.5f;
+
+    private bool _isAR;
 
     private void Start()
     {
@@ -103,6 +105,11 @@ public class HelicopterSelector : MonoBehaviour
 
     public void Select()
     {
-        onSelect?.Invoke(currentHelicopter);
+        onSelect?.Invoke(currentHelicopter, _isAR);
+    }
+
+    public void SetAR(bool isAR)
+    {
+        _isAR = isAR;
     }
 }
