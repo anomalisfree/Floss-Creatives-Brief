@@ -60,13 +60,13 @@ public class StartPositionManager : MonoBehaviour
         switch (_currentMode)
         {
             case 0:
-
+                //not yet
                 break;
             case 1:
                 InPositionMode();
                 break;
             case 2:
-
+                //not yet
                 break;
         }
     }
@@ -193,10 +193,7 @@ public class StartPositionManager : MonoBehaviour
             _currentMode = 1;
             helicopterSelector.transform.parent.parent.gameObject.SetActive(false);
             cameraNoAgR.SetActive(true);
-
-            planeMaterial.color = new Color(1, 1, 1, 0);
-            planeLineMaterial.color = new Color(0.5f, 0.5f, 0.5f, 0);
-            
+            EnableDisableAgRPlanes(false);
             _isInRotation = true;
         }
     }
@@ -207,7 +204,6 @@ public class StartPositionManager : MonoBehaviour
         canvasPose.SetActive(false);
         canvasPoseMode.SetActive(true);
         canvasControl.SetActive(false);
-
         DestroyHelicopter();
     }
 
@@ -220,9 +216,7 @@ public class StartPositionManager : MonoBehaviour
         canvasPose.SetActive(false);
         canvasPoseMode.SetActive(false);
         canvasControl.SetActive(_isAgR);
-        planeMaterial.color = new Color(1, 1, 1, 0);
-        planeLineMaterial.color = new Color(0.5f, 0.5f, 0.5f, 0);
-
+        EnableDisableAgRPlanes(false);
         _currentHelicopter.GetComponent<HelicopterControl>().SetControl(leftJoystick, rightJoystick);
     }
 
@@ -231,16 +225,13 @@ public class StartPositionManager : MonoBehaviour
         PlayerPrefs.SetInt("canShowBubbles", 0);
 
         cameraNoAgR.SetActive(false);
-
         _currentMode = 0;
         _isInRotation = false;
         canvasPose.SetActive(false);
         canvasPoseMode.SetActive(false);
         canvasControl.SetActive(false);
         helicopterSelector.transform.parent.parent.gameObject.SetActive(true);
-        planeMaterial.color = new Color(1, 1, 1, 0.2f);
-        planeLineMaterial.color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
-
+        EnableDisableAgRPlanes(true);
         DestroyHelicopter();
     }
 
@@ -259,5 +250,19 @@ public class StartPositionManager : MonoBehaviour
     {
         _isRotateInNonAgR = !_isRotateInNonAgR;
         _currentHelicopter.GetComponent<HelicopterControl>().SetControl(_isRotateInNonAgR);
+    }
+
+    private void EnableDisableAgRPlanes(bool enable)
+    {
+        if (enable)
+        {
+            planeMaterial.color = new Color(1, 1, 1, 0.2f);
+            planeLineMaterial.color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
+        }
+        else
+        {
+            planeMaterial.color = new Color(1, 1, 1, 0);
+            planeLineMaterial.color = new Color(0.5f, 0.5f, 0.5f, 0);
+        }
     }
 }

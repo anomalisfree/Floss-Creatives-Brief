@@ -36,7 +36,7 @@ public class HelicopterControl : MonoBehaviour
     {
         _leftJoystick = leftJoystick;
         _rightJoystick = rightJoystick;
-        
+
         foreach (var particle in particles)
         {
             particle.Play();
@@ -68,16 +68,7 @@ public class HelicopterControl : MonoBehaviour
         if (_isRotate)
         {
             _currentRotatorSpeed = Mathf.Lerp(_currentRotatorSpeed, 1 / Time.deltaTime, Time.deltaTime);
-            
-            if (!_audioSource.isPlaying)
-            {
-                _audioSource.Play();
-            }
-            else if(_audioSource.volume < 1)
-            {
-                _audioSource.volume +=  0.0001f / Time.deltaTime;;
-            }
-            
+            StartPlayingAudio();
         }
         else if (_leftJoystick != null && _rightJoystick != null)
         {
@@ -102,33 +93,41 @@ public class HelicopterControl : MonoBehaviour
 
             _currentRotatorSpeed = Mathf.Lerp(_currentRotatorSpeed, 1 / Time.deltaTime, Time.deltaTime);
 
-            if (!_audioSource.isPlaying)
-            {
-                _audioSource.Play();
-            }
-            else if(_audioSource.volume < 1)
-            {
-                _audioSource.volume +=  0.0001f / Time.deltaTime;;
-            }
+            StartPlayingAudio();
         }
         else
         {
-            if (_audioSource.isPlaying)
-            {
-                if (_audioSource.volume > 0)
-                {
-                    _audioSource.volume -= 0.00001f / Time.deltaTime;
-                }
-                else
-                {
-                    _audioSource.Stop();
-                }
-            }
-
+            StopPlayingAudio();
             _currentRotatorSpeed = Mathf.Lerp(_currentRotatorSpeed, 0, Time.deltaTime);
         }
 
         rotor.transform.Rotate(Vector3.up, _currentRotatorSpeed);
         rotorBack.transform.Rotate(Vector3.forward, _currentRotatorSpeed);
+    }
+
+    private void StartPlayingAudio()
+    {
+        if (!_audioSource.isPlaying)
+        {
+            _audioSource.Play();
+        }
+        else if (_audioSource.volume < 1)
+        {
+            _audioSource.volume += 0.0001f / Time.deltaTime;
+        }
+    }
+
+    private void StopPlayingAudio()
+    {
+        if (!_audioSource.isPlaying) return;
+
+        if (_audioSource.volume > 0)
+        {
+            _audioSource.volume -= 0.00001f / Time.deltaTime;
+        }
+        else
+        {
+            _audioSource.Stop();
+        }
     }
 }

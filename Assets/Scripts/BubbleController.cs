@@ -14,14 +14,12 @@ public class BubbleController : MonoBehaviour
     {
         if (Camera.main != null) transform.LookAt(Camera.main.transform);
 
-        if (PlayerPrefs.HasKey("canShowBubbles") && PlayerPrefs.HasKey("isAR"))
-        {
-            if (PlayerPrefs.GetInt("canShowBubbles") == 0)
-                _animator.SetBool(Show, false);
-            else if (PlayerPrefs.GetInt("isAR") == 0)
-                _animator.SetBool(Show, true);
-            
-        }
+        if (!PlayerPrefs.HasKey("canShowBubbles") || !PlayerPrefs.HasKey("isAR")) return;
+        
+        if (PlayerPrefs.GetInt("canShowBubbles") == 0)
+            _animator.SetBool(Show, false);
+        else if (PlayerPrefs.GetInt("isAR") == 0)
+            _animator.SetBool(Show, true);
     }
 
     private void OnCollisionEnter(Collision other)

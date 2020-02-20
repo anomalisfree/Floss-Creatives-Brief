@@ -30,9 +30,9 @@ public class HelicopterSelector : MonoBehaviour
     private void SetPivotPosition()
     {
         var newAspectRatio = (float) Screen.width / Screen.height;
-        
+
         if (!(Math.Abs(_aspectRatio - newAspectRatio) > 0)) return;
-        
+
         pivot.position = _startPivotPosition + Vector3.forward * PivotPoseDelta / newAspectRatio;
         _aspectRatio = newAspectRatio;
     }
