@@ -19,7 +19,7 @@ public class HelicopterSelector : MonoBehaviour
 
     private const float PivotPoseDelta = 5.5f;
 
-    private bool _isAR = true;
+    private bool _isAgR = true;
 
     private void Start()
     {
@@ -105,11 +105,11 @@ public class HelicopterSelector : MonoBehaviour
 
     public void Select()
     {
-        onSelect?.Invoke(currentHelicopter, _isAR);
+        onSelect?.Invoke(currentHelicopter, _isAgR);
     }
 
-    public void SetAR(bool isAR)
+    public void SetAgR(bool isAgR)
     {
-        _isAR = isAR;
+        _isAgR = isAgR;
     }
 }

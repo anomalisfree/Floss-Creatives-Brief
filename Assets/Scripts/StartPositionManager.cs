@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 
@@ -21,6 +21,8 @@ public class StartPositionManager : MonoBehaviour
     public GameObject movePhoneInfoIcon;
     public GameObject tapOnPlaneInfoIcon;
 
+    public GameObject cameraNoAgR;
+
     private GameObject _currentHelicopter;
     private ARRaycastManager _sessionOrigin;
     private List<ARRaycastHit> _hits;
@@ -37,10 +39,16 @@ public class StartPositionManager : MonoBehaviour
     private float _currentHelicopterScale = 1;
     private Quaternion _currentHelicopterRotation = Quaternion.identity;
 
+    private bool _isAgR;
+    private bool _isRotateInNonAgR;
+
+    private float _aspectRatio;
+    private const float PivotPoseDelta = -3.8f;
+
     private void Awake()
     {
         PlayerPrefs.SetInt("canShowBubbles", 0);
-        
+
         _sessionOrigin = GetComponent<ARRaycastManager>();
         _hits = new List<ARRaycastHit>();
 
@@ -49,7 +57,7 @@ public class StartPositionManager : MonoBehaviour
 
     private void Update()
     {
-       switch (_currentMode)
+        switch (_currentMode)
         {
             case 0:
 
@@ -63,11 +71,27 @@ public class StartPositionManager : MonoBehaviour
         }
     }
 
+    private void SetNoAgRealCameraPosition()
+    {
+        var newAspectRatio = (float) Screen.width / Screen.height;
+
+        if (!(Math.Abs(_aspectRatio - newAspectRatio) > 0)) return;
+
+        cameraNoAgR.transform.position = Vector3.forward * PivotPoseDelta / newAspectRatio +
+                                         Vector3.down * PivotPoseDelta / newAspectRatio / 2.75f;
+        _aspectRatio = newAspectRatio;
+    }
+
     private void InPositionMode()
     {
+        if (!_isAgR)
+        {
+            SetNoAgRealCameraPosition();
+        }
+
         movePhoneInfoIcon.SetActive(FindObjectsOfType<ARPlane>().Length == 0 && !_isInRotation);
         tapOnPlaneInfoIcon.SetActive(FindObjectsOfType<ARPlane>().Length > 0 && !_isInRotation);
-        
+
         if (Input.touchCount == 1)
         {
             var touch = Input.GetTouch(0);
@@ -147,20 +171,30 @@ public class StartPositionManager : MonoBehaviour
         }
     }
 
-    private void SetPositionMode(int currentHelicopterNum, bool isAR)
+    private void SetPositionMode(int currentHelicopterNum, bool isAgR)
     {
         PlayerPrefs.SetInt("canShowBubbles", 1);
-        
-        if (isAR)
+        PlayerPrefs.SetInt("isAR", isAgR ? 1 : 0);
+
+        _isAgR = isAgR;
+        _currentHelicopterNum = currentHelicopterNum;
+
+        if (isAgR)
         {
-            _currentHelicopterNum = currentHelicopterNum;
             _currentMode = 1;
             helicopterSelector.transform.parent.parent.gameObject.SetActive(false);
             canvasPoseMode.SetActive(true);
         }
         else
         {
-            
+            _currentHelicopter =
+                Instantiate(helicopterPrefabs[_currentHelicopterNum], Vector3.zero, Quaternion.identity);
+
+            _currentMode = 1;
+            helicopterSelector.transform.parent.parent.gameObject.SetActive(false);
+            cameraNoAgR.SetActive(true);
+
+            _isInRotation = true;
         }
     }
 
@@ -177,23 +211,24 @@ public class StartPositionManager : MonoBehaviour
     public void SetControlMode()
     {
         PlayerPrefs.SetInt("canShowBubbles", 0);
-        
+
         _currentMode = 2;
         _isInRotation = false;
         canvasPose.SetActive(false);
         canvasPoseMode.SetActive(false);
-        canvasControl.SetActive(true);
+        canvasControl.SetActive(_isAgR);
         planeMaterial.color = new Color(1, 1, 1, 0);
         planeLineMaterial.color = new Color(0.5f, 0.5f, 0.5f, 0);
 
-        _currentHelicopter.GetComponent<HelicopterControl>().leftJoystick = leftJoystick;
-        _currentHelicopter.GetComponent<HelicopterControl>().rightJoystick = rightJoystick;
+        _currentHelicopter.GetComponent<HelicopterControl>().SetControl(leftJoystick, rightJoystick);
     }
 
     public void SetSelectMode()
     {
         PlayerPrefs.SetInt("canShowBubbles", 0);
-        
+
+        cameraNoAgR.SetActive(false);
+
         _currentMode = 0;
         _isInRotation = false;
         canvasPose.SetActive(false);
@@ -215,5 +250,11 @@ public class StartPositionManager : MonoBehaviour
                 _currentHelicopter.GetComponent<HelicopterControl>().pivotRotation.localRotation;
             Destroy(_currentHelicopter);
         }
+    }
+
+    public void StartRotorsInNoAgR()
+    {
+        _isRotateInNonAgR = !_isRotateInNonAgR;
+        _currentHelicopter.GetComponent<HelicopterControl>().SetControl(_isRotateInNonAgR);
     }
 }

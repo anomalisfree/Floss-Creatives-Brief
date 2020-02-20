@@ -45,8 +45,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3d21a161bc69cd4788c020291eeffa0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftJoystick: {fileID: 0}
-  rightJoystick: {fileID: 0}
   pivotRotation: {fileID: 2390082545340110120}
   rotor: {fileID: 5548911688764809534}
   rotorBack: {fileID: 637179927743105960}
@@ -243,22 +241,57 @@ PrefabInstance:
     - target: {fileID: 8563926248553522206, guid: f5614640e01b4694d9df6be33ef69432,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 11
+      value: 74
       objectReference: {fileID: 0}
     - target: {fileID: 8563926248553522206, guid: f5614640e01b4694d9df6be33ef69432,
         type: 3}
       propertyPath: m_textInfo.wordCount
-      value: 1
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 8563926248553522206, guid: f5614640e01b4694d9df6be33ef69432,
         type: 3}
       propertyPath: m_textInfo.lineCount
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8563926248553522206, guid: f5614640e01b4694d9df6be33ef69432,
         type: 3}
       propertyPath: m_textInfo.pageCount
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8563926248553522206, guid: f5614640e01b4694d9df6be33ef69432,
+        type: 3}
+      propertyPath: m_text
+      value: Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+      objectReference: {fileID: 0}
+    - target: {fileID: 8563926248553522206, guid: f5614640e01b4694d9df6be33ef69432,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8563926248553522206, guid: f5614640e01b4694d9df6be33ef69432,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8563926248553522206, guid: f5614640e01b4694d9df6be33ef69432,
+        type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8563926248553522206, guid: f5614640e01b4694d9df6be33ef69432,
+        type: 3}
+      propertyPath: m_firstOverflowCharacterIndex
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8563926248553522206, guid: f5614640e01b4694d9df6be33ef69432,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 3.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8563926248553522206, guid: f5614640e01b4694d9df6be33ef69432,
+        type: 3}
+      propertyPath: m_textAlignment
+      value: 257
       objectReference: {fileID: 0}
     - target: {fileID: 9147663041311931718, guid: f5614640e01b4694d9df6be33ef69432,
         type: 3}
@@ -393,22 +426,37 @@ PrefabInstance:
     - target: {fileID: 8563926248553522206, guid: f5614640e01b4694d9df6be33ef69432,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 11
+      value: 74
       objectReference: {fileID: 0}
     - target: {fileID: 8563926248553522206, guid: f5614640e01b4694d9df6be33ef69432,
         type: 3}
       propertyPath: m_textInfo.wordCount
-      value: 1
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 8563926248553522206, guid: f5614640e01b4694d9df6be33ef69432,
         type: 3}
       propertyPath: m_textInfo.lineCount
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8563926248553522206, guid: f5614640e01b4694d9df6be33ef69432,
         type: 3}
       propertyPath: m_textInfo.pageCount
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8563926248553522206, guid: f5614640e01b4694d9df6be33ef69432,
+        type: 3}
+      propertyPath: m_text
+      value: Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+      objectReference: {fileID: 0}
+    - target: {fileID: 8563926248553522206, guid: f5614640e01b4694d9df6be33ef69432,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8563926248553522206, guid: f5614640e01b4694d9df6be33ef69432,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 9147663041311931718, guid: f5614640e01b4694d9df6be33ef69432,
         type: 3}
