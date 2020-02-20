@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class HelicopterControl : MonoBehaviour
 {
@@ -6,6 +7,8 @@ public class HelicopterControl : MonoBehaviour
 
     public Transform rotor;
     public Transform rotorBack;
+
+    public List<ParticleSystem> particles;
 
     private bool _isRotate;
 
@@ -38,6 +41,21 @@ public class HelicopterControl : MonoBehaviour
     public void SetControl(bool isRotate)
     {
         _isRotate = isRotate;
+
+        if (isRotate)
+        {
+            foreach (var particle in particles)
+            {
+                particle.Play();
+            }
+        }
+        else
+        {
+            foreach (var particle in particles)
+            {
+                particle.Stop();
+            }
+        }
     }
 
     private void Update()
@@ -45,10 +63,16 @@ public class HelicopterControl : MonoBehaviour
         if (_isRotate)
         {
             _currentRotatorSpeed = Mathf.Lerp(_currentRotatorSpeed, 1 / Time.deltaTime, Time.deltaTime);
+            
             if (!_audioSource.isPlaying)
             {
                 _audioSource.Play();
             }
+            else if(_audioSource.volume < 1)
+            {
+                _audioSource.volume +=  0.0001f / Time.deltaTime;;
+            }
+            
         }
         else if (_leftJoystick != null && _rightJoystick != null)
         {
@@ -77,12 +101,23 @@ public class HelicopterControl : MonoBehaviour
             {
                 _audioSource.Play();
             }
+            else if(_audioSource.volume < 1)
+            {
+                _audioSource.volume +=  0.0001f / Time.deltaTime;;
+            }
         }
         else
         {
             if (_audioSource.isPlaying)
             {
-                _audioSource.Stop();
+                if (_audioSource.volume > 0)
+                {
+                    _audioSource.volume -= 0.00001f / Time.deltaTime;
+                }
+                else
+                {
+                    _audioSource.Stop();
+                }
             }
 
             _currentRotatorSpeed = Mathf.Lerp(_currentRotatorSpeed, 0, Time.deltaTime);
