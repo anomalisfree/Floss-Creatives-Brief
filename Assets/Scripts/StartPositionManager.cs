@@ -194,6 +194,9 @@ public class StartPositionManager : MonoBehaviour
             helicopterSelector.transform.parent.parent.gameObject.SetActive(false);
             cameraNoAgR.SetActive(true);
 
+            planeMaterial.color = new Color(1, 1, 1, 0);
+            planeLineMaterial.color = new Color(0.5f, 0.5f, 0.5f, 0);
+            
             _isInRotation = true;
         }
     }
@@ -235,17 +238,8 @@ public class StartPositionManager : MonoBehaviour
         canvasPoseMode.SetActive(false);
         canvasControl.SetActive(false);
         helicopterSelector.transform.parent.parent.gameObject.SetActive(true);
-        
-        if (_isAgR)
-        {
-            planeMaterial.color = new Color(1, 1, 1, 0.2f);
-            planeLineMaterial.color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
-        }
-        else
-        {
-            planeMaterial.color = new Color(1, 1, 1, 0);
-            planeLineMaterial.color = new Color(0.5f, 0.5f, 0.5f, 0);
-        }
+        planeMaterial.color = new Color(1, 1, 1, 0.2f);
+        planeLineMaterial.color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
 
         DestroyHelicopter();
     }

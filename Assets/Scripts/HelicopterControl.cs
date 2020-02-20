@@ -36,6 +36,11 @@ public class HelicopterControl : MonoBehaviour
     {
         _leftJoystick = leftJoystick;
         _rightJoystick = rightJoystick;
+        
+        foreach (var particle in particles)
+        {
+            particle.Play();
+        }
     }
 
     public void SetControl(bool isRotate)
