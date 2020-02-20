@@ -184,6 +184,7 @@ public class StartPositionManager : MonoBehaviour
             _currentMode = 1;
             helicopterSelector.transform.parent.parent.gameObject.SetActive(false);
             canvasPoseMode.SetActive(true);
+            EnableDisableAgRPlanes(true);
         }
         else
         {
